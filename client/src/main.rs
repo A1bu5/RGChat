@@ -6,7 +6,7 @@ use std::net::TcpStream;
 use crate::file_transfer::send_message_or_file;
 
 fn main() -> io::Result<()> {
-    let key = b"an example very very secret key.";
+    let key = b"an example very very secret key.";//Please makesuret the key is same to the Servers 
     let mut stream = TcpStream::connect("127.0.0.1:7878")?;
     println!("Connected to server!");
 
