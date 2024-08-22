@@ -5,7 +5,8 @@
 A open-source chat application with end-to-end encryption, developed using Rust, Go, and C++. The application supports secure messaging and file transfer between clients and a server. The project is designed with a modular structure, allowing easy extension and integration with different UI frameworks like Qt.
 
 ## Features
-
+![Chat Example](./images/1)
+![Chat Example](./images/2)
 - **Secure Messaging**: Messages sent between clients and server are encrypted using AES-GCM, ensuring privacy and integrity.
 - **File Transfer**: Supports encrypted file transfer between clients and the server, with proper handling of file chunks and end-to-end encryption.
 - **Modular Design**: The project is structured into multiple modules, making it easy to manage and extend different functionalities.
