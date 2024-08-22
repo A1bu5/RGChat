@@ -1,6 +1,7 @@
-# Encrypted Chat Program
+# RGChat
+##aka. Rust_GO_C Chat
 
-This project is a command-line based chat application with end-to-end encryption, developed using Rust, Go, and C++. The application supports secure messaging and file transfer between clients and a server. The project is designed with a modular structure, allowing easy extension and integration with different UI frameworks like Qt.
+A open-source chat application with end-to-end encryption, developed using Rust, Go, and C++. The application supports secure messaging and file transfer between clients and a server. The project is designed with a modular structure, allowing easy extension and integration with different UI frameworks like Qt.
 
 ## Features
 
