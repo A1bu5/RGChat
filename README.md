@@ -40,26 +40,26 @@ A open-source chat application with end-to-end encryption, developed using Rust,
 - **Client (Rust)**
   1.Navigate to the client directory:
 
-	  	cd client
+		cd client
 
 	2.Build the Rust client:
 
-			cargo build --release
+		cargo build --release
 - **Server (Go)**
   1.Navigate to the server directory:
 
-			cd server
+		cd server
 
 	2.Run the Go server:
 
-			go run main.go
+		go run main.go
 
 - **Run Client**
 
-			cd client
+		cd client
 
 
-	 		cargo run
+		cargo run
 # USAGE
 ## 1.Running the Server:
 Start the server first using the Go command mentioned above. The server listens for incoming connections from clients.
