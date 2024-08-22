@@ -7,10 +7,10 @@ pub fn encrypt(key: &[u8], data: &[u8]) -> Result<Vec<u8>, Box<dyn std::error::E
     let key = GenericArray::from_slice(key);
     let cipher = Aes256Gcm::new(key);
 
-    let mut nonce = [0u8; 12]; // GCM模式中Nonce的大小通常为12字节
+    let mut nonce = [0u8; 12]; // GCM Nonce size always is 12
     rand::thread_rng().fill(&mut nonce);
 
-    let nonce = Nonce::from_slice(&nonce); // Nonce需要转换为slice类型
+    let nonce = Nonce::from_slice(&nonce); // Nonce need to be changed to slice
     let ciphertext = cipher.encrypt(nonce, data).map_err(|e| format!("Encryption error: {:?}", e))?;
 
     let mut result = nonce.to_vec();
@@ -22,7 +22,7 @@ pub fn decrypt(key: &[u8], data: &[u8]) -> Result<Vec<u8>, Box<dyn std::error::E
     let key = GenericArray::from_slice(key);
     let cipher = Aes256Gcm::new(key);
 
-    let (nonce, ciphertext) = data.split_at(12); // Nonce长度为12字节
+    let (nonce, ciphertext) = data.split_at(12); // NonceLength
     let nonce = Nonce::from_slice(nonce);
     let plaintext = cipher.decrypt(nonce, ciphertext).map_err(|e| format!("Decryption error: {:?}", e))?;
 
