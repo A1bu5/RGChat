@@ -13,7 +13,7 @@ import (
 )
 
 func main() {
-	key := []byte("an example very very secret key.")
+	key := []byte("an example very very secret key.")//Please makesuret the key is same to the clients
 
 	listener, err := net.Listen("tcp", ":7878")
 	if err != nil {
