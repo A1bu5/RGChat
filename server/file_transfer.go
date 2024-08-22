@@ -8,7 +8,7 @@ import (
 )
 
 func receiveFile(conn net.Conn, key []byte) error {
-	buffer := make([]byte, 1024) // 增大缓冲区以接收较大块的数据
+	buffer := make([]byte, 1024) // Custom the datacache size
 	var fileData []byte
 	var fileName string
 
