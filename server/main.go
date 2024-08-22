@@ -46,10 +46,10 @@ func handleConnection(conn net.Conn, key []byte) {
 
 		line = strings.TrimSpace(line)
 		if line == "MSG" {
-			// 处理普通消息
+			// Message
 			handleIncomingMessage(conn, reader, key)
 		} else if strings.HasPrefix(line, "FILENAME:") {
-			// 处理文件传输
+			// File
 			handleIncomingFile(conn, reader, key, line)
 		}
 	}
@@ -86,7 +86,7 @@ func handleIncomingMessage(conn net.Conn, reader *bufio.Reader, key []byte) {
 
 	fmt.Printf("Decrypted message: %s\n", string(plaintext))
 	response := strings.ToUpper(string(plaintext))
-	conn.Write([]byte(response)) // 注意这里的 conn 变量
+	conn.Write([]byte(response)) 
 }
 
 func handleIncomingFile(conn net.Conn, reader *bufio.Reader, key []byte, metadata string) {
@@ -105,12 +105,12 @@ func handleIncomingFile(conn net.Conn, reader *bufio.Reader, key []byte, metadat
 		return
 	}
 
-	fileData := make([]byte, 0, fileSize) // 动态扩展的缓冲区
+	fileData := make([]byte, 0, fileSize) // cache
 	receivedBytes := 0
 
 	for {
 		fmt.Printf("Reading chunk %d\n", receivedBytes)
-		// 读取 Nonce
+		//Read  Nonce
 		nonce := make([]byte, 12)
 		_, err := io.ReadFull(reader, nonce)
 		if err == io.EOF {
@@ -123,13 +123,13 @@ func handleIncomingFile(conn net.Conn, reader *bufio.Reader, key []byte, metadat
 		}
 		fmt.Printf("Received Nonce: %x\n", nonce)
 
-		// 读取加密的数据块
-		// 注意这里的大小要根据实际收到的数据调整
+		// Read EncryptedChunks
+		// DataAdjust is important
 		chunkSize := fileSize - receivedBytes
 		if chunkSize > 1024 {
-			chunkSize = 1024 + 16 // 16 是 GCM 模式的认证标签长度
+			chunkSize = 1024 + 16 // 16 is GCM isgn length
 		} else {
-			chunkSize += 16 // 最后一块数据也包含认证标签
+			chunkSize += 16 // Check the last chunk sign
 		}
 		encryptedChunk := make([]byte, chunkSize)
 		n, err := io.ReadFull(reader, encryptedChunk)
